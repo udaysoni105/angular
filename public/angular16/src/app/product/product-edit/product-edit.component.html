@@ -1,0 +1,42 @@
+<fieldset class="container">
+  <legend>
+    <h1>EDIT FORM</h1>
+  </legend>
+  <fieldset class="container1">
+    <legend>
+      <h2>edit product details</h2>
+    </legend>
+    <p-toast [baseZIndex]="10000" [style]="{ marginTop: '100px' }"></p-toast>
+    <form class="user-form" (ngSubmit)="onUpdate()" [formGroup]="productForm">
+      <div>
+        <label for="Name">Name<span class="required-indicator">*</span>:</label>
+        <textarea id="Name" name="Name" formControlName="Name" required></textarea>
+      </div>
+      <div>
+        <label for="description">DESCRIPTION<span></span>:</label>
+        <textarea id="description" name="description" formControlName="Description"></textarea>
+      </div>
+
+      <div>
+        <label for="SKU">SKU<span class="required-indicator">*</span>:</label>
+        <input type="text" id="SKU" name="SKU" formControlName="Sku" required>
+      </div>
+
+      <div>
+        <label for="InstockQuantity">QUANTITY<span class="required-indicator">*</span>:</label>
+        <input type="number" id="quantity" name="InstockQuantity" formControlName="InstockQuantity" required>
+      </div>
+
+      <div>
+        <label class="label" for="sale_price">SALEPRICE<span class="required-indicator">*</span>:</label>
+        <input type="number" id="sale_price" name="sale_price" formControlName="SalePrice" required>
+      </div>
+      <div class="card p-fluid">
+        <label for="text">TAX:</label>
+        <p-chips [(ngModel)]="product.Text" name="text[]"></p-chips>
+      </div>
+
+      <button type="submit">Edit</button>
+    </form>
+  </fieldset>
+</fieldset>

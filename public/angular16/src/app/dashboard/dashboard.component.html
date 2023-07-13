@@ -1,0 +1,82 @@
+<div class="card flex justify-content-center chart-container" id="id">
+  <p-chart class="chart" type="pie" [data]="data" [options]="options"></p-chart>
+</div>
+<div class="card flex justify-content-center">
+  <p-fieldset legend="Header">
+    <div class="card flex justify-content-center">AutoCompleteModule:
+      <p-autoComplete (completeMethod)="search($event)" [suggestions]="suggestions" field="Name"></p-autoComplete>
+    </div>       
+    <hr>
+    <div class="card flex justify-content-center">CalendarModule:
+      <p-calendar [(ngModel)]="date"></p-calendar>
+    </div>
+    <hr>
+    <div class="card">
+      <h1>KeyFilterModule</h1>
+      <div class="flex flex-wrap gap-3 mb-4">
+        <div class="flex-auto">
+          <label for="integer" class="font-bold block mb-2"> Integer </label>
+          <input pInputText id="integer" pKeyFilter="int" class="w-full" />
+        </div>
+        <div class="flex-auto">
+          <label for="number" class="font-bold block mb-2"> Number </label>
+          <input pInputText id="number" pKeyFilter="num" class="w-full" />
+        </div>
+        <div class="flex-auto">
+          <label for="money" class="font-bold block mb-2"> Money </label>
+          <input pInputText id="money" pKeyFilter="money" class="w-full" />
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <div class="flex-auto">
+          <label for="hex" class="font-bold block mb-2"> Hex </label>
+          <input pInputText id="hex" pKeyFilter="hex" class="w-full" />
+        </div>
+        <div class="flex-auto">
+          <label for="alphabetic" class="font-bold block mb-2"> Alphabetic </label>
+          <input pInputText id="alphabetic" pKeyFilter="alpha" class="w-full" />
+        </div>
+        <div class="flex-auto">
+          <label for="alphanumeric" class="font-bold block mb-2"> Alphanumeric </label>
+          <input pInputText id="alphanumeric" pKeyFilter="alphanum" class="w-full" />
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="card flex justify-content-center">PasswordModule
+      <p-password [(ngModel)]="value" [toggleMask]="true"></p-password>
+    </div>
+    <hr>
+    <div class="card flex justify-content-center">SelectButtonModule
+      <p-selectButton [options]="stateOptions" [(ngModel)]="value" optionLabel="label" optionValue="value"></p-selectButton>
+    </div>
+    <hr>
+    <div class="card flex justify-content-center">
+      <p-accordion [activeIndex]="0">
+          <p-accordionTab header="Header I">
+              <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+          </p-accordionTab>
+          <p-accordionTab header="Header II">
+              <p>
+                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
+                  ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
+              </p>
+          </p-accordionTab>
+          <p-accordionTab header="Header III">
+              <p>
+                  At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa
+                  qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
+              </p>
+          </p-accordionTab>
+      </p-accordion>
+  </div>
+  <hr>
+  <div class="card flex justify-content-center">
+    <p-toast></p-toast>
+    <p-fileUpload mode="basic" chooseLabel="Choose" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" (onUpload)="onUpload($event)"></p-fileUpload>
+</div>
+  </p-fieldset>
+</div>

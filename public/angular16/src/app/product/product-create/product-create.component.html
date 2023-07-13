@@ -1,0 +1,93 @@
+<fieldset class="container">
+  <legend>
+    <h1>PRODUCT FORM</h1>
+  </legend>
+  <fieldset class="container1">
+    <legend>
+      <h2>BASIC DETAILS</h2>
+    </legend>
+    <form #productForm="ngForm"  class="user-form" (ngSubmit)="onSubmit(productForm)">
+      <div>
+        <label class="label" for="name">Name<span class="required-indicator">*</span>:</label>
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-shopping-cart"></i>
+          <!-- <input type="text" id="Name" name="Name" [(ngModel)]="product.Name" required /> -->
+          <input type="text" id="Name" name="Name" [(ngModel)]="product.Name" required pattern="[a-zA-Z ]*" #name="ngModel"/>
+        </span>
+        <div *ngIf="productForm.submitted && productForm.controls['Name'].invalid">
+          <div class="error-message">Name is required.</div>
+        </div>
+      </div>
+
+      <div>
+        <label class="label" for="Description">Description<span class="required-indicator"></span>:</label>
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-align-left"></i>
+          <textarea id="Description" name="deDescriptionscription" [(ngModel)]="product.Description"
+            required></textarea>
+        </span>
+      </div>
+
+      <div>
+        <label class="label" for="SKU">SKU<span class="required-indicator">*</span>:</label>
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-qrcode"></i>
+          <i class="pi pi-barcode"></i>
+          <input type="text" id="SKU" name="SKU" [(ngModel)]="product.Sku" required pattern="" #name="ngModel" />
+        </span>
+        <div *ngIf="productForm.submitted && productForm.controls['SKU'].invalid">
+          <div class="error-message">SKU is required.</div>
+        </div>
+      </div>
+
+      <div>
+        <label class="label" for="quantity">Quantity<span class="required-indicator">*</span>:</label>
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-server"></i>
+          <input type="number" id="quantity" name="InstockQuantity" [(ngModel)]="product.InstockQuantity" required
+            [ngClass]="{'invalid': productForm.submitted && !isPositiveNumber(productForm.controls['InstockQuantity'].value)}"
+          />
+        </span>
+        <div *ngIf="productForm.submitted && !isPositiveNumber(productForm.controls['InstockQuantity'].value)" class="error-message">
+          Quantity must be a positive number.
+        </div>
+      </div>
+      
+      <div>
+        <label class="label" for="sale_price">Sale Price<span class="required-indicator">*</span>:</label>
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-dollar"></i>
+          <input type="number" id="sale_price" name="SalePrice" [(ngModel)]="product.SalePrice" required
+            [ngClass]="{'invalid': productForm.submitted && !isPositiveNumber(productForm.controls['SalePrice'].value)}"
+          />
+        </span>
+        <div *ngIf="productForm.submitted && !isPositiveNumber(productForm.controls['SalePrice'].value)" class="error-message">
+          Sale Price must be a positive number.
+        </div>
+      </div>
+
+      <div>
+        <label class="label" for="text">Tax<span class="required-indicator"></span>:</label>
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-align-justify"></i>
+          <p-chips type="number" id="sale_price" [(ngModel)]="product.Text" name="text"></p-chips>
+        </span>
+      </div>
+            <div>
+        <label class="label">Vendor:</label>
+        <div *ngFor="let vendor of vendor">
+          <input type="checkbox" [value]="vendor.id" > {{ vendor.name }}
+        </div>
+        <app-vendor-table (vendorSelected)="onVendorSelected($event)"></app-vendor-table>
+      </div>
+
+      <div class="card flex flex-wrap gap-3 justify-content-center">
+        <button type="submit" class="submit">Submit</button>
+        <p-button label="cancel" styleClass="p-button-danger" (click)="onCancel()"></p-button>
+      </div>
+      <div *ngIf="productForm.submitted && productForm.invalid" class="error-message">
+        Please fill in all required fields.
+      </div>
+    </form>
+  </fieldset>
+</fieldset>

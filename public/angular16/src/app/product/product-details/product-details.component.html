@@ -1,0 +1,22 @@
+<div class="card">
+  <div *ngIf="!product" class="horizontal-loader"></div>
+  <div *ngIf="product">
+    <p-fieldset>
+      <ng-template pTemplate="header">
+        <div class="flex align-items-center text-primary">
+          <span class="pi pi-product mr-2"></span>
+          <span class="font-bold text-lg">product Details</span>
+        </div>
+      </ng-template>
+      <div *ngIf="product">
+        <h2>product Details</h2>
+        <p>NAME: {{ product.Name }}</p>
+        <p>DESCRIPTION: {{ product.Description }}</p>
+        <p>SKU: {{ product.Sku }}</p>
+        <p>QUANTITY: {{ product.InstockQuantity }}</p>
+        <p>SALEPRICE: {{ product.SalePrice }}</p>
+        <p>TEXT: {{ product.Text }}</p>
+      </div>
+    </p-fieldset>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<div *ngIf="!product; else productList">
+  </div>
+
+  <ng-template #productList>
+  <h2>PRODUCT LIST</h2>
+
+  <div class="search-container">
+    <input type="text" [(ngModel)]="searchQuery" (input)="onSearch()" >
+  </div>
+
+  <div *ngIf="!product" class="horizontal-loader"></div>
+  <div *ngIf="product">
+
+  <p-table #table [value]="product" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10">
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="id">ID<p-sortIcon field="id"></p-sortIcon></th>
+      <th>NAME</th>
+      <th>DESCRIPTION</th>
+      <th>SKU</th>
+      <th>QUANTITY</th>
+      <th>SALEPRICE</th>
+      <th>TAX</th>
+      <th>VENDOR</th>
+      <th>ACTIONS</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td>{{ product.id}}</td>
+      <td>{{ product.Name }}</td>
+      <td>{{ product.Description }}</td>
+      <td>{{ product.Sku }}</td>
+      <td>{{ product.InstockQuantity }}</td>
+      <td>{{ product.SalePrice }}</td>
+      <td>{{ product.Text }}</td>
+      <td>{{ product.vName}}</td>
+      <td>
+        <div class="card flex justify-content-center flex-wrap gap-3">
+          <p-toast></p-toast>
+          <p-splitButton label="Edit" icon="pi pi-pencil" [routerLink]="['/edit', product.id]">Edit Product</p-splitButton>
+          <p-splitButton label="Soft Delete" icon="pi pi-trash" (click)="softDeleteProduct(product.id)"styleClass="p-button-danger mb-2">Soft Delete Product</p-splitButton>
+          <!-- Add a new button for hard delete -->
+          <p-splitButton label="Hard Delete" icon="pi pi-trash" (click)="confirmHardDelete(product.id)" styleClass="p-button-warning mb-2"></p-splitButton>
+          <!-- Add the confirmation dialog -->
+          <p-confirmDialog (click)="confirmHardDelete(product.id)" header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+          <p-splitButton label="View" icon="pi pi-eye" [routerLink]="['/view', product.id]" styleClass="p-button-success mb-2">View Product</p-splitButton>
+      </div>
+      </td>  
+    </tr>
+  </ng-template>
+  </p-table>
+</div>
